@@ -11,3 +11,4 @@ function countMatchesAsync(array, key) {
 }
 
 module.exports = { countMatchesAsync };
+
