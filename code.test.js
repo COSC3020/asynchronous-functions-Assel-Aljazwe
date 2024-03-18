@@ -1,14 +1,23 @@
-const { countMatchesAsync } = require('./code');
+const assert = require('assert').strict;
+const countMatchesAsync = require('./code');
 
-test('correctly counts the number of matches', done => { // Use the done callback provided by Jest to handle asynchronous tests.
-  const array = [1, 2, 3, 2, 4, 2];
-  const key = 2;
+async function runTests() {
+  const array = [1, 2, 3, 2, 4, 2, 5];
+  const keyToSearch = 2;
+  const expectedCount = 3;
 
-  countMatchesAsync(array, key, (err, count) => {
-    expect(count).toBe(3);
-    done(); // Signal Jest that the asynchronous test is complete.
-  });
+  const count = await countMatchesAsync(array, keyToSearch);
+  assert.equal(count, expectedCount, `Expected ${expectedCount} matches, got ${count}`);
+
+  console.log("All tests passed!");
+}
+
+runTests().catch(error => {
+  console.error("Some tests failed.");
+  console.error(error);
+  process.exit(1);
 });
+
 
 
 
