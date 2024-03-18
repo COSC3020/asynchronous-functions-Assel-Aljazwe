@@ -1,12 +1,13 @@
-const { countMatchesAsync } = require('./code');
+const { countMatches } = require('./code');
 
-test('correctly counts the number of matches', async () => {
-  const array = [1, 2, 3, 2, 4, 2];
-  const key = 2;
-  const expectedCount = 3;
-
-  const count = await countMatchesAsync(array, key);
-  expect(count).toBe(expectedCount);
+describe('countMatches', () => {
+  test('correctly counts matches', async () => {
+    const array = [1, 2, 3, 2, 4, 2];
+    const key = 2;
+    const expectedCount = 3;
+    const count = await countMatches(array, key);
+    expect(count).toBe(expectedCount);
+  });
 });
 
 
