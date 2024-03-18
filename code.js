@@ -1,11 +1,14 @@
-function countMatchesAsync(array, key, callback) {
-    setImmediate(() => {
-        const count = array.reduce((acc, item) => acc + (item === key ? 1 : 0), 0);
-        callback(null, count);
+function countMatchesAsync(array, key) {
+  return new Promise((resolve) => {
+    let count = 0;
+    array.forEach((item) => {
+      if (item === key) count++;
     });
+    resolve(count);
+  });
 }
 
-module.exports = { countMatchesAsync };
+module.exports = countMatchesAsync;
 
 
 
