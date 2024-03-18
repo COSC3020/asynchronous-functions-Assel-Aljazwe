@@ -1,11 +1,24 @@
-function countMatchesAsync(array, key) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const count = array.reduce((acc, item) => acc + (item === key ? 1 : 0), 0);
-      resolve(count);
-    }, 0); // Using setTimeout with 0 ms to simulate an asynchronous operation
-  });
+const async = require('async');
+
+function countMatchesAsync(array, key, callback) {
+    let count = 0;
+
+    async.eachSeries(array, (item, cb) => {
+        if (item === key) {
+            count++;
+        }
+        cb(); // proceed to the next item
+    }, (err) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, count);
+        }
+    });
 }
+
+module.exports = { countMatchesAsync };
+
 
 
 
