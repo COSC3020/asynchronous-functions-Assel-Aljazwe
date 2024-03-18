@@ -1,17 +1,12 @@
-
-async function countMatchesAsync(array, key) {
+async function countMatches(array, key) {
+  return new Promise((resolve) => {
     let count = 0;
-    // Simulating an asynchronous operation with Promise
-    await Promise.resolve().then(() => {
-        for (const item of array) {
-            if (item === key) {
-                count++;
-            }
-        }
+    array.forEach((item) => {
+      if (item === key) count++;
     });
-    return count;
+    resolve(count);
+  });
 }
 
-module.exports = { countMatchesAsync };
 
 
